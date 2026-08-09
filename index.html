@@ -1,0 +1,902 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>イラスト制作お見積り＆ご依頼</title>
+    <style>
+        :root {
+            --primary-color: #e87a90; 
+            --primary-light: #fdf2f4;
+            --primary-border: #f8c2cb;
+            --note-color: #d9534f;
+            --bg-color: #f8f9fa;
+            --border-color: #e0e0e0;
+            --text-color: #333;
+            --success-color: #2ecc71;
+        }
+
+
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+
+        .top-banner {
+            width: 100%;
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+
+        .form-header-box {
+            border: 1px dashed var(--primary-border);
+            background-color: var(--primary-light);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+
+        .form-header-box h1 {
+            color: var(--primary-color);
+            margin: 0 0 8px 0;
+            font-size: 1.5rem;
+        }
+
+
+        .form-header-box p {
+            margin: 0;
+            font-size: 0.82rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+
+        h2 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 8px;
+            color: #2c3e50;
+            margin-top: 30px;
+        }
+
+
+        .required-badge {
+            color: red;
+            font-size: 0.9em;
+            margin-left: 4px;
+        }
+
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+
+        .options-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 16px 12px;
+            margin-top: 15px;
+        }
+
+
+        .option-card {
+            position: relative;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            background: #fafafa;
+        }
+
+
+        .option-card:hover {
+            border-color: var(--primary-color);
+        }
+
+
+        .option-card:has(input:checked) {
+            border-color: var(--primary-color);
+            background-color: var(--primary-light);
+            box-shadow: 0 0 0 1px var(--primary-color);
+        }
+
+
+        .option-card input {
+            margin-right: 10px;
+            accent-color: var(--primary-color);
+        }
+
+
+        .badge {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 2px 10px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            white-space: nowrap;
+            z-index: 5;
+        }
+
+
+        .section-note {
+            margin-top: 12px;
+            padding: 8px 12px;
+            background-color: #fff9f9;
+            border-left: 3px solid var(--note-color);
+            color: var(--note-color);
+            font-size: 0.88rem;
+            line-height: 1.5;
+            border-radius: 0 4px 4px 0;
+            white-space: pre-wrap;
+        }
+
+
+        .preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+
+        .preview-container img {
+            max-width: 140px;
+            max-height: 140px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+
+
+        .summary-box {
+            background: var(--primary-light);
+            border: 1px solid var(--primary-border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+
+        .summary-box h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--primary-border);
+            padding-bottom: 8px;
+        }
+
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+
+        .summary-row.total {
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-top: 1px solid var(--primary-border);
+            padding-top: 10px;
+            color: var(--primary-color);
+        }
+
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+
+
+        .submit-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+
+        /* --- 送信完了画面スタイル --- */
+        .success-card {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+
+        .success-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--success-color);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
+        }
+
+
+        .success-title {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+
+        .success-text {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+
+        .btn-group-success {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+            justify-content: center;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+
+        .btn-outline {
+            width: 100%;
+            padding: 12px 24px;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+
+        .btn-close-tab {
+            width: 100%;
+            padding: 12px 24px;
+            border: 1px solid #ccc;
+            background: #f0f0f0;
+            color: #666;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+
+        .btn-close-tab:hover {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+
+        .popup-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+
+        .popup-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="container">
+    <img id="topMainImage" class="top-banner" src="" alt="メインビジュアル" style="display: none;">
+
+
+    <div id="loadingView" style="text-align: center; padding: 40px; color: #666;">
+        データを読み込んでいます...
+    </div>
+
+
+    <div id="mainContent" style="display: none;">
+        
+        <div class="form-header-box">
+            <h1>ご依頼フォーム</h1>
+            <p>※本ページに掲載された画像の無断転載・無断使用を禁止します。<br>※不正利用が発覚した場合、損害賠償の対象となります。</p>
+        </div>
+
+
+        <div id="formSectionContainer">
+            <!-- 1. 描写範囲 -->
+            <div class="section">
+                <h2>1. 描写範囲の選択<span class="required-badge">*</span></h2>
+                <div id="typeContainer" class="options-group"></div>
+                <div id="typeImagePreview" class="preview-container"></div>
+                <div id="noteType" class="section-note" style="display: none;"></div>
+            </div>
+
+
+            <!-- 2. 追加オプション -->
+            <div class="section">
+                <h2>2. 追加オプション<span class="required-badge">*</span></h2>
+                <div id="optionContainer" class="options-group"></div>
+                <div id="optionImagePreview" class="preview-container"></div>
+                <div id="noteOption" class="section-note" style="display: none;"></div>
+            </div>
+
+
+            <!-- 3. お支払い方法 -->
+            <div class="section">
+                <h2>3. お支払い方法<span class="required-badge">*</span></h2>
+                <div id="paymentContainer" class="options-group"></div>
+                <div id="notePayment" class="section-note" style="display: none;"></div>
+            </div>
+
+
+            <!-- お見積り概算 -->
+            <div class="summary-box" id="summaryBox">
+                <h3>お見積り概算</h3>
+                <div class="summary-row">
+                    <span>描写範囲:</span>
+                    <span id="displaySelectedType">未選択</span>
+                </div>
+                <div class="summary-row">
+                    <span>選択オプション:</span>
+                    <span id="displaySelectedOptions">なし</span>
+                </div>
+                <div class="summary-row">
+                    <span>お支払い方法:</span>
+                    <span id="displaySelectedPayment">未選択</span>
+                </div>
+                <div class="summary-row">
+                    <span>決済手数料:</span>
+                    <span id="displayFeeAmount">¥0</span>
+                </div>
+                <div class="summary-row total">
+                    <span>合計金額（税込）:</span>
+                    <span id="displaySelectedTotal">¥0</span>
+                </div>
+            </div>
+
+
+            <!-- 送信フォーム -->
+            <form id="mainContactForm" class="section" style="margin-top: 40px;">
+                <h2>4. お客様情報の入力</h2>
+
+
+                <div class="form-group">
+                    <label for="userName">お名前 / ハンドルネーム <span class="required-badge">*</span></label>
+                    <input type="text" id="userName" name="userName" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="userEmail">メールアドレス <span class="required-badge">*</span></label>
+                    <input type="email" id="userEmail" name="userEmail" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="userMessage">ご依頼詳細・備考</label>
+                    <textarea id="userMessage" name="userMessage" rows="5" placeholder="ご自由にご記入ください。"></textarea>
+                </div>
+
+
+                <button type="submit" id="submitBtn" class="submit-btn">この内容で送信する</button>
+                <div id="formStatus" style="margin-top: 10px; color: red; text-align: center;"></div>
+            </form>
+        </div>
+
+
+        <!-- 送信完了画面 -->
+        <div id="successCard" class="success-card" style="display: none;">
+            <div class="success-icon">✓</div>
+            <div class="success-title">送信が完了しました</div>
+            <p class="success-text">
+                お問い合わせありがとうございます。<br>
+                内容を確認のうえ、担当者よりご連絡いたします。
+            </p>
+            <div class="btn-group-success">
+                <button type="button" id="resetFormBtn" class="btn-outline">もう一度送信する</button>
+                <button type="button" id="closeTabBtn" class="btn-close-tab">このタブを閉じる</button>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<div id="popupOverlay" class="popup-overlay">
+    <img id="popupImage" src="" alt="拡大画像">
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const GAS_URL = "https://script.google.com/macros/s/AKfycby_RhSgRl-FEzQ1EYxfs6NZzfI64hik4Zgn1yxB5VLTnLLFv141INr2iYSoD0WDblbt/exec";
+
+
+    const applyThemeColor = (hexColor) => {
+        if (!/^#[0-9A-F]{6}$/i.test(hexColor)) return;
+        const r = parseInt(hexColor.slice(1, 3), 16);
+        const g = parseInt(hexColor.slice(3, 5), 16);
+        const b = parseInt(hexColor.slice(5, 7), 16);
+
+
+        const lightR = Math.round(r + (255 - r) * 0.92);
+        const lightG = Math.round(g + (255 - g) * 0.92);
+        const lightB = Math.round(b + (255 - b) * 0.92);
+
+
+        const borderR = Math.round(r + (255 - r) * 0.6);
+        const borderG = Math.round(g + (255 - g) * 0.6);
+        const borderB = Math.round(b + (255 - b) * 0.6);
+
+
+        const root = document.documentElement;
+        root.style.setProperty('--primary-color', hexColor);
+        root.style.setProperty('--primary-light', `rgb(${lightR}, ${lightG}, ${lightB})`);
+        root.style.setProperty('--primary-border', `rgb(${borderR}, ${borderG}, ${borderB})`);
+    };
+
+
+    const setupNote = (elementId, text, color) => {
+        const el = document.getElementById(elementId);
+        if (text && text.trim() !== '') {
+            el.textContent = text;
+            if (color) el.style.setProperty('--note-color', color);
+            el.style.display = 'block';
+        } else {
+            el.style.display = 'none';
+        }
+    };
+
+
+    const initData = async () => {
+        try {
+            const response = await fetch(GAS_URL);
+            const data = await response.json();
+
+
+            if (data.config) {
+                if (data.config.top_image_url) {
+                    const topImg = document.getElementById('topMainImage');
+                    topImg.src = data.config.top_image_url;
+                    topImg.style.display = 'block';
+                }
+                if (data.config.theme_color) applyThemeColor(data.config.theme_color);
+
+
+                const noteColor = data.config.note_color || '';
+                setupNote('noteType', data.config.note_type, noteColor);
+                setupNote('noteOption', data.config.note_option, noteColor);
+                setupNote('notePayment', data.config.note_payment, noteColor);
+            }
+
+
+            if (data.menus && data.menus.length > 0) {
+                renderMenus(data.menus);
+            }
+
+
+            document.getElementById('loadingView').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+
+
+            updatePreviews();
+            calculateTotal();
+
+
+        } catch (error) {
+            console.error("データ取得エラー:", error);
+        }
+    };
+
+
+    const renderMenus = (menus) => {
+        const typeContainer = document.getElementById('typeContainer');
+        const optionContainer = document.getElementById('optionContainer');
+        const paymentContainer = document.getElementById('paymentContainer');
+
+
+        typeContainer.innerHTML = '';
+        optionContainer.innerHTML = '';
+        paymentContainer.innerHTML = '';
+
+
+        menus.forEach((item) => {
+            const card = document.createElement('label');
+            card.className = 'option-card';
+            
+            const badgeHtml = item.badge ? `<span class="badge">${item.badge}</span>` : '';
+
+
+            let priceText = "";
+            const numPrice = Number(item.price);
+
+
+            if (item.price === "" || item.price === null || isNaN(numPrice)) {
+                priceText = item.price ? `(${item.price})` : `(要相談)`;
+            } else if (item.type === 'commercial' || (numPrice > 0 && numPrice < 10)) {
+                priceText = `(×${numPrice}倍)`;
+            } else if (numPrice > 0 && numPrice < 1) {
+                priceText = `(${(numPrice * 100).toFixed(1)}%)`;
+            } else if (numPrice === 0) {
+                priceText = `(無料)`;
+            } else {
+                priceText = `(+¥${numPrice.toLocaleString()})`;
+            }
+
+
+            if (item.category === "描写範囲") {
+                card.innerHTML = `
+                    ${badgeHtml}
+                    <input type="radio" name="type" value="${item.price}" data-label="${item.label}" data-imgs="${item.imgs}">
+                    <span>${item.label} ${priceText}</span>
+                `;
+                typeContainer.appendChild(card);
+
+
+            } else if (item.category === "オプション") {
+                card.innerHTML = `
+                    ${badgeHtml}
+                    <input type="checkbox" class="additional-option-item" value="${item.price}" data-label="${item.label}" data-imgs="${item.imgs}" data-type="${item.type}">
+                    <span>${item.label} ${priceText}</span>
+                `;
+                optionContainer.appendChild(card);
+
+
+            } else if (item.category === "決済方法") {
+                const rateText = (numPrice * 100).toFixed(1);
+                card.innerHTML = `
+                    ${badgeHtml}
+                    <input type="radio" name="payment" value="${item.label}" data-rate="${item.price}">
+                    <span>${item.label} (${rateText}%)</span>
+                `;
+                paymentContainer.appendChild(card);
+            }
+        });
+
+
+        document.querySelectorAll('input[name="type"]').forEach(el => el.addEventListener('change', onOptionChange));
+        document.querySelectorAll('.additional-option-item').forEach(el => el.addEventListener('change', onOptionChange));
+        document.querySelectorAll('input[name="payment"]').forEach(el => el.addEventListener('change', calculateTotal));
+    };
+
+
+    const onOptionChange = (e) => {
+        if (e && e.target && e.target.classList.contains('additional-option-item')) {
+            const target = e.target;
+            const isNoneOption = target.dataset.label === '追加オプションなし';
+
+
+            if (isNoneOption && target.checked) {
+                document.querySelectorAll('.additional-option-item').forEach(opt => {
+                    if (opt !== target) opt.checked = false;
+                });
+            } else if (!isNoneOption && target.checked) {
+                document.querySelectorAll('.additional-option-item').forEach(opt => {
+                    if (opt.dataset.label === '追加オプションなし') opt.checked = false;
+                });
+            }
+        }
+
+
+        updatePreviews();
+        calculateTotal();
+    };
+
+
+    const updatePreviews = () => {
+        const typeImagePreview = document.getElementById('typeImagePreview');
+        const optionImagePreview = document.getElementById('optionImagePreview');
+
+
+        typeImagePreview.innerHTML = '';
+        const selectedType = document.querySelector('input[name="type"]:checked');
+        if (selectedType && selectedType.dataset.imgs) {
+            const urls = selectedType.dataset.imgs.split(',').map(s => s.trim()).filter(Boolean);
+            urls.forEach(url => {
+                const img = document.createElement('img');
+                img.src = url;
+                img.onclick = () => {
+                    document.getElementById('popupImage').src = url;
+                    document.getElementById('popupOverlay').style.display = 'flex';
+                };
+                typeImagePreview.appendChild(img);
+            });
+        }
+
+
+        optionImagePreview.innerHTML = '';
+        document.querySelectorAll('.additional-option-item:checked').forEach(opt => {
+            if (opt.dataset.imgs) {
+                const urls = opt.dataset.imgs.split(',').map(s => s.trim()).filter(Boolean);
+                urls.forEach(url => {
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.onclick = () => {
+                        document.getElementById('popupImage').src = url;
+                        document.getElementById('popupOverlay').style.display = 'flex';
+                    };
+                    optionImagePreview.appendChild(img);
+                });
+            }
+        });
+    };
+
+
+    const calculateTotal = () => {
+        let baseTotal = 0;
+        let commercialMultiplier = 1;
+
+
+        const selectedType = document.querySelector('input[name="type"]:checked');
+        if (selectedType) {
+            const val = parseFloat(selectedType.value);
+            if (!isNaN(val)) baseTotal += val;
+            document.getElementById('displaySelectedType').textContent = selectedType.dataset.label;
+        } else {
+            document.getElementById('displaySelectedType').textContent = "未選択";
+        }
+
+
+        const selectedOptionsText = [];
+        document.querySelectorAll('.additional-option-item:checked').forEach(opt => {
+            const val = parseFloat(opt.value);
+            const optType = opt.dataset.type;
+
+
+            selectedOptionsText.push(opt.dataset.label);
+
+
+            if (!isNaN(val)) {
+                if (optType === 'commercial' || (val > 0 && val < 10)) {
+                    commercialMultiplier *= val;
+                } else {
+                    baseTotal += val;
+                }
+            }
+        });
+        document.getElementById('displaySelectedOptions').textContent = selectedOptionsText.length > 0 ? selectedOptionsText.join(', ') : 'なし';
+
+
+        const subtotal = Math.round(baseTotal * commercialMultiplier);
+
+
+        const selectedPayment = document.querySelector('input[name="payment"]:checked');
+        let fee = 0;
+        if (selectedPayment) {
+            const rate = parseFloat(selectedPayment.dataset.rate) || 0;
+            fee = Math.round(subtotal * rate);
+            document.getElementById('displaySelectedPayment').textContent = selectedPayment.value;
+            document.getElementById('displayFeeAmount').textContent = "¥" + fee.toLocaleString();
+        } else {
+            document.getElementById('displaySelectedPayment').textContent = "未選択";
+            document.getElementById('displayFeeAmount').textContent = "¥0";
+        }
+
+
+        const finalTotal = subtotal + fee;
+        document.getElementById('displaySelectedTotal').textContent = "¥" + finalTotal.toLocaleString();
+
+
+        return {
+            selectedTypeLabel: selectedType ? selectedType.dataset.label : "未選択",
+            selectedOptionsLabel: selectedOptionsText.length > 0 ? selectedOptionsText.join(', ') : "なし",
+            subtotalStr: "¥" + subtotal.toLocaleString(),
+            paymentLabel: selectedPayment ? selectedPayment.value : "未選択",
+            feeStr: "¥" + fee.toLocaleString(),
+            finalTotalStr: "¥" + finalTotal.toLocaleString()
+        };
+    };
+
+
+    // フォーム送信処理
+    const form = document.getElementById('mainContactForm');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+
+        const submitBtn = document.getElementById('submitBtn');
+        const formStatus = document.getElementById('formStatus');
+        
+        const selectedType = document.querySelector('input[name="type"]:checked');
+        if (!selectedType) {
+            alert('「1. 描写範囲」を選択してください。');
+            return;
+        }
+
+
+        const selectedOptions = document.querySelectorAll('.additional-option-item:checked');
+        if (selectedOptions.length === 0) {
+            alert('「2. 追加オプション」を選択してください。\n（※特にない場合は「追加オプションなし」をご選択ください）');
+            return;
+        }
+
+
+        const selectedPayment = document.querySelector('input[name="payment"]:checked');
+        if (!selectedPayment) {
+            alert('「3. お支払い方法」を選択してください。');
+            return;
+        }
+
+
+        const totals = calculateTotal();
+
+
+        const payload = {
+            userName: document.getElementById('userName').value,
+            userEmail: document.getElementById('userEmail').value,
+            userMessage: document.getElementById('userMessage').value,
+            selectedType: totals.selectedTypeLabel,
+            selectedOptions: totals.selectedOptionsLabel,
+            subtotal: totals.subtotalStr,
+            selectedPayment: totals.paymentLabel,
+            feeAmount: totals.feeStr,
+            totalPrice: totals.finalTotalStr
+        };
+
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = '送信中...';
+        formStatus.textContent = '';
+
+
+        try {
+            const response = await fetch(GAS_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/plain;charset=utf-8'
+                },
+                body: JSON.stringify(payload)
+            });
+
+
+            const result = await response.json();
+
+
+            if (result.result === 'success') {
+                // 入力画面領域を非表示にし、送信完了画面を表示
+                document.getElementById('formSectionContainer').style.display = 'none';
+                document.getElementById('successCard').style.display = 'block';
+                
+                // 画面トップへスクロール
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                throw new Error(result.message || '送信エラー');
+            }
+        } catch (err) {
+            console.error('送信エラー:', err);
+            formStatus.textContent = '送信中にエラーが発生しました。時間を置いて再度お試しください。';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'この内容で送信する';
+        }
+    });
+
+
+    // 「もう一度送信する」ボタンの処理
+    document.getElementById('resetFormBtn').addEventListener('click', () => {
+        form.reset();
+        document.querySelectorAll('.additional-option-item').forEach(opt => opt.checked = false);
+        document.querySelectorAll('input[name="type"]').forEach(r => r.checked = false);
+        document.querySelectorAll('input[name="payment"]').forEach(r => r.checked = false);
+        
+        updatePreviews();
+        calculateTotal();
+
+
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'この内容で送信する';
+
+
+        document.getElementById('successCard').style.display = 'none';
+        document.getElementById('formSectionContainer').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+
+    // 「このタブを閉じる」ボタンの処理
+    document.getElementById('closeTabBtn').addEventListener('click', () => {
+        window.close();
+        // セキュリティ制限で閉じられなかった場合のフォールバック
+        setTimeout(() => {
+            alert('ブラウザのセキュリティ制限により、自動でタブを閉じることができませんでした。\n手動でタブをお閉じください。');
+        }, 300);
+    });
+
+
+    document.getElementById('popupOverlay').addEventListener('click', () => {
+        document.getElementById('popupOverlay').style.display = 'none';
+    });
+
+
+    initData();
+});
+</script>
+
+
+</body>
+</html>
