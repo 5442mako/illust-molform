@@ -16,7 +16,7 @@
             --success-color: #2ecc71;
             --badge-optional-bg: #6c757d;
         }
-		
+
         body {
             font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
             background-color: var(--bg-color);
@@ -161,13 +161,6 @@
             line-height: 1.5;
         }
 
-        .sub-note {
-            font-size: 0.8rem;
-            color: #777;
-            margin-top: 6px;
-            line-height: 1.4;
-        }
-
         .section-note {
             margin-top: 12px;
             padding: 8px 12px;
@@ -276,7 +269,6 @@
             cursor: not-allowed;
         }
 
-        /* --- 送信完了画面スタイル --- */
         .success-card {
             text-align: center;
             padding: 40px 20px;
@@ -338,24 +330,6 @@
             color: #fff;
         }
 
-        .btn-close-tab {
-            width: 100%;
-            padding: 12px 24px;
-            border: 1px solid #ccc;
-            background: #f0f0f0;
-            color: #666;
-            font-size: 0.95rem;
-            font-weight: bold;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .btn-close-tab:hover {
-            background: #e0e0e0;
-            color: #333;
-        }
-
         .popup-overlay {
             position: fixed;
             top: 0; left: 0;
@@ -373,55 +347,10 @@
             border-radius: 8px;
         }
 
-/* 選択肢カードのレイアウト */
-.option-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.option-card {
-  display: flex;
-  align-items: center;
-  padding: 12px 16px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  background-color: #fafafa;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.option-card:hover {
-  background-color: #f0f0f0;
-}
-
-.option-card input[type="radio"],
-.option-card input[type="checkbox"] {
-  margin-right: 8px;
-}
-
-/* 注意書きボックス（左端に赤ライン＋薄ピンク背景） */
-.notice-box {
-  background-color: #fff5f5;
-  border-left: 4px solid #e53e3e;
-  padding: 12px 16px;
-  border-radius: 0 6px 6px 0;
-  font-size: 0.9rem;
-  color: #c53030;
-  line-height: 1.5;
-}
-
-.notice-box p {
-  margin: 0;
-}
-
-.note-mark { 
-display: inline-block; /* ★インライン要素にマージンを効かせるために必要 */ margin-right: 10px; /* 好みの幅に調整（例: 6px〜10px） */ 
-}
-
-
-
+        .note-mark { 
+            display: inline-block;
+            margin-right: 10px; 
+        }
     </style>
 </head>
 <body>
@@ -436,7 +365,7 @@ display: inline-block; /* ★インライン要素にマージンを効かせる
     <div id="mainContent" style="display: none;">
         
         <div class="form-header-box">
-            <p style="color: #e74c3c;">※本ページに掲載された画像の無断転載・無断使用を禁止します。<br>※不正利用が発覚した場合、損害賠償の対象となります。</p> </div>
+            <p style="color: #e74c3c;">※本ページに掲載された画像の無断転載・無断使用を禁止します。<br>※不正利用が発覚した場合、損害賠償の対象となります。</p>
         </div>
 
         <div id="formSectionContainer">
@@ -502,7 +431,6 @@ display: inline-block; /* ★インライン要素にマージンを効かせる
                     <input type="email" id="userEmail" name="userEmail" required>
                 </div>
 
-	　  <!-- 追加：ご依頼テンプレート -->
                 <div class="form-group">
                     <label class="field-title" for="userTemplate">
                         ご依頼テンプレート
@@ -526,55 +454,51 @@ display: inline-block; /* ★インライン要素にマージンを効かせる
 【その他、ご相談したいこと】：</textarea>
                 </div>
 
-                <!-- ■実績公開について  -->
-<div class="form-group">
-    <label class="field-title">
-        ■実績公開について
-        <span class="status-badge-req">必須</span>
-    </label>
-    <div class="field-description">
-        完成したイラストは、当方のポートフォリオサイト（Xfolio、および無断転載・AI学習対策のあるSNSサイト「Wick」）にて実績として公開させていただきます。X（旧Twitter）への掲載についてご希望をお選びください。
-    </div>
-    <div class="options-group single-column">
-        <label class="option-card">
-            <input type="radio" name="portfolioOption" value="Xfolio、Wick のみで公開（Xへの掲載は不要）" required>
-            <span>Xfolio、Wick のみで公開（Xへの掲載は不要）</span>
-        </label>
-        <label class="option-card">
-            <input type="radio" name="portfolioOption" value="Xfolio、Wick に加え、Xでの公開も希望する">
-            <span>Xfolio、Wick に加え、Xでの公開も希望する</span>
-        </label>
-    </div>
-    <!-- 修正箇所 -->
-    <div class="section-note"><span class="note-mark">※</span>完全非公開（すべてのサイトでの掲載NG）をご希望の場合は、事前にDMにてご相談ください。</div>
-</div>
+                <!-- ■実績公開について -->
+                <div class="form-group">
+                    <label class="field-title">
+                        ■実績公開について
+                        <span class="status-badge-req">必須</span>
+                    </label>
+                    <div class="field-description">
+                        完成したイラストは、当方のポートフォリオサイト（Xfolio、および無断転載・AI学習対策のあるSNSサイト「Wick」）にて実績として公開させていただきます。X（旧Twitter）への掲載についてご希望をお選びください。
+                    </div>
+                    <div class="options-group single-column">
+                        <label class="option-card">
+                            <input type="radio" name="portfolioOption" value="Xfolio、Wick のみで公開（Xへの掲載は不要）" required>
+                            <span>Xfolio、Wick のみで公開（Xへの掲載は不要）</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="portfolioOption" value="Xfolio、Wick に加え、Xでの公開も希望する">
+                            <span>Xfolio、Wick に加え、Xでの公開も希望する</span>
+                        </label>
+                    </div>
+                    <div class="section-note"><span class="note-mark">※</span>完全非公開（すべてのサイトでの掲載NG）をご希望の場合は、事前にDMにてご相談ください。</div>
+                </div>
 
+                <!-- ■メッセージの雰囲気について -->
+                <div class="form-group">
+                    <label class="field-title">
+                        ■メッセージの雰囲気について
+                        <span class="status-badge-opt">任意</span>
+                    </label>
+                    <div class="field-description">
+                        クライアント様がリラックスしてお取引できるよう、メッセージのトーンをお選びいただけます。ご希望がございましたらチェックを入れてください。
+                    </div>
+                    <div class="options-group single-column">
+                        <label class="option-card">
+                            <input type="radio" name="messageTone" value="標準（ビジネス向け）：丁寧でフォーマルな文章でやり取りします。">
+                            <span>標準（ビジネス向け）：丁寧でフォーマルな文章でやり取りします。</span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="messageTone" value="マイルド（個人向け）：敬語をベースにしつつ、絵文字などを交えた柔らかい雰囲気でやり取りします。">
+                            <span>マイルド（個人向け）：敬語をベースにしつつ、絵文字などを交えた柔らかい雰囲気でやり取りします。</span>
+                        </label>
+                    </div>
+                    <div class="section-note"><span class="note-mark">※</span>チェックがない場合は、標準（ビジネス向け）の文章にてご対応いたします。</div>
+                </div>
 
-<!-- ■メッセージの雰囲気について -->
-<div class="form-group">
-    <label class="field-title">
-        ■メッセージの雰囲気について
-        <span class="status-badge-opt">任意</span>
-    </label>
-    <div class="field-description">
-        クライアント様がリラックスしてお取引できるよう、メッセージのトーンをお選びいただけます。ご希望がございましたらチェックを入れてください。
-    </div>
-    <div class="options-group single-column">
-        <label class="option-card">
-            <input type="radio" name="messageTone" value="標準（ビジネス向け）：丁寧でフォーマルな文章でやり取りします。">
-            <span>標準（ビジネス向け）：丁寧でフォーマルな文章でやり取りします。</span>
-        </label>
-        <label class="option-card">
-            <input type="radio" name="messageTone" value="マイルド（個人向け）：敬語をベースにしつつ、絵文字などを交えた柔らかい雰囲気でやり取りします。">
-            <span>マイルド（個人向け）：敬語をベースにしつつ、絵文字などを交えた柔らかい雰囲気でやり取りします。</span>
-        </label>
-    </div>
-    <!-- 修正箇所 -->
-    <div class="section-note"><span class="note-mark">※</span>チェックがない場合は、標準（ビジネス向け）の文章にてご対応いたします。</div>
-</div>
-
-
-                <!-- 追加：ご依頼の検討の決め手となったイラスト -->
+                <!-- ご依頼の検討の決め手となったイラスト -->
                 <div class="form-group">
                     <label class="field-title" for="decisiveIllustration">
                         ご依頼の検討の決め手となったイラストがあれば教えてください
@@ -582,8 +506,6 @@ display: inline-block; /* ★インライン要素にマージンを効かせる
                     </label>
                     <input type="text" id="decisiveIllustration" name="decisiveIllustration" placeholder="〇〇のイラストを見て、など">
                 </div>
-
-              
 
                 <button type="submit" id="submitBtn" class="submit-btn">この内容で送信する</button>
                 <div id="formStatus" style="margin-top: 10px; color: red; text-align: center;"></div>
@@ -596,12 +518,11 @@ display: inline-block; /* ★インライン要素にマージンを効かせる
             <div class="success-title">送信が完了しました</div>
             <p class="success-text">
                 お問い合わせありがとうございます。<br>
-                内容を確認のうえ、担当者よりご連絡いたします。
-  （この画面・タブは閉じていただいて構いません）
+                内容を確認のうえ、担当者よりご連絡いたします。<br>
+                （この画面・タブは閉じていただいて構いません）
             </p>
             <div class="btn-group-success">
                 <button type="button" id="resetFormBtn" class="btn-outline">もう一度送信する</button>
-               
             </div>
         </div>
 
@@ -614,10 +535,7 @@ display: inline-block; /* ★インライン要素にマージンを効かせる
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. 初期表示用のデータ参照URL（GitHub上のdata.json直リンク）
     const DATA_JSON_URL = "https://raw.githubusercontent.com/5442mako/illust-molform/main/data.json";
-
-    // 2. フォーム送信（POST）先のGAS Web API URL
     const GAS_SUBMIT_URL = "https://script.google.com/macros/s/AKfycbzlfabikHOMTndxu1yHURGIEm9MnwYy0XNFxMS6Wv6kh96LEp8zTRti25bY3gynSprF/exec";
 
     const defaultTemplateText = `【納期】：
@@ -667,7 +585,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const initData = async () => {
         try {
-            // キャッシュ対策としてタイムスタンプを付与してdata.jsonを取得
             const response = await fetch(`${DATA_JSON_URL}?_=${new Date().getTime()}`);
             if (!response.ok) throw new Error("データの取得に失敗しました");
             
@@ -823,7 +740,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let baseTotal = 0;
         let commercialMultiplier = 1;
 
-        // 1. 描写範囲（基本料金）
         const selectedType = document.querySelector('input[name="type"]:checked');
         if (selectedType) {
             const val = parseFloat(selectedType.value);
@@ -833,7 +749,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('displaySelectedType').textContent = "未選択";
         }
 
-        // 2. 追加オプション
         const selectedOptionsText = [];
         document.querySelectorAll('.additional-option-item:checked').forEach(opt => {
             const val = parseFloat(opt.value);
@@ -851,10 +766,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         document.getElementById('displaySelectedOptions').textContent = selectedOptionsText.length > 0 ? selectedOptionsText.join(', ') : 'なし';
 
-        // 小計算出（（基本料金 + 定額オプション） × 商用利用倍率）
         const subtotal = Math.round(baseTotal * commercialMultiplier);
 
-        // 3. 決済手数料＆合計
         const selectedPayment = document.querySelector('input[name="payment"]:checked');
         let fee = 0;
         if (selectedPayment) {
@@ -880,7 +793,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
-    // フォーム送信処理（GAS_SUBMIT_URLへPOST）
     const form = document.getElementById('mainContactForm');
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -961,7 +873,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 「もう一度送信する」ボタンの処理
     document.getElementById('resetFormBtn').addEventListener('click', () => {
         form.reset();
         document.querySelectorAll('.additional-option-item').forEach(opt => opt.checked = false);
@@ -984,14 +895,6 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // 「このタブを閉じる」ボタンの処理
-    document.getElementById('closeTabBtn').addEventListener('click', () => {
-        window.close();
-        setTimeout(() => {
-            alert('ブラウザのセキュリティ制限により、自動でタブを閉じることができませんでした。\n手動でタブをお閉じください。');
-        }, 300);
-    });
-
     document.getElementById('popupOverlay').addEventListener('click', () => {
         document.getElementById('popupOverlay').style.display = 'none';
     });
@@ -1002,5 +905,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
-
-
