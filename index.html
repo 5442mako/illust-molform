@@ -597,10 +597,10 @@ display: inline-block; /* ★インライン要素にマージンを効かせる
             <p class="success-text">
                 お問い合わせありがとうございます。<br>
                 内容を確認のうえ、担当者よりご連絡いたします。
-				（この画面・タブは閉じていただいて構いません）
             </p>
             <div class="btn-group-success">
                 <button type="button" id="resetFormBtn" class="btn-outline">もう一度送信する</button>
+                <button type="button" id="closeTabBtn" class="btn-close-tab">このタブを閉じる</button>
             </div>
         </div>
 
@@ -617,7 +617,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const DATA_JSON_URL = "https://raw.githubusercontent.com/5442mako/illust-molform/main/data.json";
 
     // 2. フォーム送信（POST）先のGAS Web API URL
-    const GAS_SUBMIT_URL = "https://script.google.com/macros/s/AKfycbzlfabikHOMTndxu1yHURGIEm9MnwYy0XNFxMS6Wv6kh96LEp8zTRti25bY3gynSprF/exec";
+    const GAS_SUBMIT_URL = "https://script.google.com/macros/s/AKfycby_RhSgRl-FEzQ1EYxfs6NZzfI64hik4Zgn1yxB5VLTnLLFv141INr2iYSoD0WDblbt/exec";
 
     const defaultTemplateText = `【納期】：
 【納期の前倒しの可否】：
