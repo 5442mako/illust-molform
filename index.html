@@ -14,6 +14,7 @@
             --border-color: #e0e0e0;
             --text-color: #333;
             --success-color: #2ecc71;
+            --badge-optional-bg: #6c757d;
         }
 
         body {
@@ -61,7 +62,7 @@
 
         .form-header-box p {
             margin: 0;
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             color: #666;
             line-height: 1.4;
         }
@@ -88,6 +89,11 @@
             grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
             gap: 16px 12px;
             margin-top: 15px;
+        }
+
+        .options-group.single-column {
+            grid-template-columns: 1fr;
+            gap: 10px;
         }
 
         .option-card {
@@ -130,6 +136,36 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             white-space: nowrap;
             z-index: 5;
+        }
+
+        .status-badge-req, .status-badge-opt {
+            float: right;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 2px 10px;
+            border-radius: 12px;
+            color: #fff;
+        }
+        .status-badge-req {
+            background-color: #e74c3c;
+        }
+        .status-badge-opt {
+            background-color: var(--badge-optional-bg);
+        }
+
+        .field-description {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 6px;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .sub-note {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 6px;
+            line-height: 1.4;
         }
 
         .section-note {
@@ -190,21 +226,32 @@
         }
 
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 25px;
         }
 
-        .form-group label {
+        .form-group label.field-title {
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             font-weight: bold;
+            font-size: 1.05rem;
+            color: #2c3e50;
         }
 
-        .form-group input, .form-group textarea {
+        .form-group input[type="text"], 
+        .form-group input[type="email"], 
+        .form-group textarea {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: 8px;
             box-sizing: border-box;
+            background-color: #fafafa;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .form-group textarea {
+            line-height: 1.6;
         }
 
         .submit-btn {
@@ -325,6 +372,56 @@
             max-height: 90%;
             border-radius: 8px;
         }
+
+/* 選択肢カードのレイアウト */
+.option-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.option-card {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fafafa;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.option-card:hover {
+  background-color: #f0f0f0;
+}
+
+.option-card input[type="radio"],
+.option-card input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+/* 注意書きボックス（左端に赤ライン＋薄ピンク背景） */
+.notice-box {
+  background-color: #fff5f5;
+  border-left: 4px solid #e53e3e;
+  padding: 12px 16px;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.9rem;
+  color: #c53030;
+  line-height: 1.5;
+}
+
+.notice-box p {
+  margin: 0;
+}
+
+.note-mark { 
+display: inline-block; /* ★インライン要素にマージンを効かせるために必要 */ margin-right: 10px; /* 好みの幅に調整（例: 6px〜10px） */ 
+}
+
+
+
     </style>
 </head>
 <body>
@@ -339,8 +436,7 @@
     <div id="mainContent" style="display: none;">
         
         <div class="form-header-box">
-            <h1>ご依頼フォーム</h1>
-            <p>※本ページに掲載された画像の無断転載・無断使用を禁止します。<br>※不正利用が発覚した場合、損害賠償の対象となります。</p>
+            <p style="color: #e74c3c;">※本ページに掲載された画像の無断転載・無断使用を禁止します。<br>※不正利用が発覚した場合、損害賠償の対象となります。</p> </div>
         </div>
 
         <div id="formSectionContainer">
@@ -397,19 +493,97 @@
                 <h2>4. お客様情報の入力</h2>
 
                 <div class="form-group">
-                    <label for="userName">お名前 / ハンドルネーム <span class="required-badge">*</span></label>
+                    <label class="field-title" for="userName">お名前 / ハンドルネーム <span class="required-badge">*</span></label>
                     <input type="text" id="userName" name="userName" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="userEmail">メールアドレス <span class="required-badge">*</span></label>
+                    <label class="field-title" for="userEmail">メールアドレス <span class="required-badge">*</span></label>
                     <input type="email" id="userEmail" name="userEmail" required>
                 </div>
 
+	　  <!-- 追加：ご依頼テンプレート -->
                 <div class="form-group">
-                    <label for="userMessage">ご依頼詳細・備考</label>
-                    <textarea id="userMessage" name="userMessage" rows="5" placeholder="ご自由にご記入ください。"></textarea>
+                    <label class="field-title" for="userTemplate">
+                        ご依頼テンプレート
+                        <span class="status-badge-req">必須</span>
+                    </label>
+                    <div class="field-description">
+                        各項目の「：」の後にご希望内容をご記入ください。
+                    </div>
+                    <textarea id="userTemplate" name="userTemplate" rows="15" required>【納期】：
+【納期の前倒しの可否】：
+【使用用途】：
+【イラストサイズ】：
+【納品形式】：
+【キャラの年齢】：
+【ご希望の頭身】：
+【ご希望の構図】：
+【ご希望のポーズ】：
+【雰囲気】：
+【表情】：
+【実績公開可能日時】：
+【その他、ご相談したいこと】：</textarea>
                 </div>
+
+                <!-- ■実績公開について  -->
+<div class="form-group">
+    <label class="field-title">
+        ■実績公開について
+        <span class="status-badge-req">必須</span>
+    </label>
+    <div class="field-description">
+        完成したイラストは、当方のポートフォリオサイト（Xfolio、および無断転載・AI学習対策のあるSNSサイト「Wick」）にて実績として公開させていただきます。X（旧Twitter）への掲載についてご希望をお選びください。
+    </div>
+    <div class="options-group single-column">
+        <label class="option-card">
+            <input type="radio" name="portfolioOption" value="Xfolio、Wick のみで公開（Xへの掲載は不要）" required>
+            <span>Xfolio、Wick のみで公開（Xへの掲載は不要）</span>
+        </label>
+        <label class="option-card">
+            <input type="radio" name="portfolioOption" value="Xfolio、Wick に加え、Xでの公開も希望する">
+            <span>Xfolio、Wick に加え、Xでの公開も希望する</span>
+        </label>
+    </div>
+    <!-- 修正箇所 -->
+    <div class="section-note"><span class="note-mark">※</span>完全非公開（すべてのサイトでの掲載NG）をご希望の場合は、事前にDMにてご相談ください。</div>
+</div>
+
+
+<!-- ■メッセージの雰囲気について -->
+<div class="form-group">
+    <label class="field-title">
+        ■メッセージの雰囲気について
+        <span class="status-badge-opt">任意</span>
+    </label>
+    <div class="field-description">
+        クライアント様がリラックスしてお取引できるよう、メッセージのトーンをお選びいただけます。ご希望がございましたらチェックを入れてください。
+    </div>
+    <div class="options-group single-column">
+        <label class="option-card">
+            <input type="radio" name="messageTone" value="標準（ビジネス向け）：丁寧でフォーマルな文章でやり取りします。">
+            <span>標準（ビジネス向け）：丁寧でフォーマルな文章でやり取りします。</span>
+        </label>
+        <label class="option-card">
+            <input type="radio" name="messageTone" value="マイルド（個人向け）：敬語をベースにしつつ、絵文字などを交えた柔らかい雰囲気でやり取りします。">
+            <span>マイルド（個人向け）：敬語をベースにしつつ、絵文字などを交えた柔らかい雰囲気でやり取りします。</span>
+        </label>
+    </div>
+    <!-- 修正箇所 -->
+    <div class="section-note"><span class="note-mark">※</span>チェックがない場合は、標準（ビジネス向け）の文章にてご対応いたします。</div>
+</div>
+
+
+                <!-- 追加：ご依頼の検討の決め手となったイラスト -->
+                <div class="form-group">
+                    <label class="field-title" for="decisiveIllustration">
+                        ご依頼の検討の決め手となったイラストがあれば教えてください
+                        <span class="status-badge-opt">任意</span>
+                    </label>
+                    <input type="text" id="decisiveIllustration" name="decisiveIllustration" placeholder="〇〇のイラストを見て、など">
+                </div>
+
+              
 
                 <button type="submit" id="submitBtn" class="submit-btn">この内容で送信する</button>
                 <div id="formStatus" style="margin-top: 10px; color: red; text-align: center;"></div>
@@ -444,6 +618,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. フォーム送信（POST）先のGAS Web API URL
     const GAS_SUBMIT_URL = "https://script.google.com/macros/s/AKfycby_RhSgRl-FEzQ1EYxfs6NZzfI64hik4Zgn1yxB5VLTnLLFv141INr2iYSoD0WDblbt/exec";
+
+    const defaultTemplateText = `【納期】：
+【納期の前倒しの可否】：
+【使用用途】：
+【イラストサイズ】：
+【納品形式】：
+【キャラの年齢】：
+【ご希望の頭身】：
+【ご希望の構図】：
+【ご希望のポーズ】：
+【雰囲気】：
+【表情】：
+【実績公開可能日時】：
+【その他、ご相談したいこと】：`;
 
     const applyThemeColor = (hexColor) => {
         if (!/^#[0-9A-F]{6}$/i.test(hexColor)) return;
@@ -717,12 +905,23 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        const portfolioOption = document.querySelector('input[name="portfolioOption"]:checked');
+        if (!portfolioOption) {
+            alert('「■実績公開について」をご選択ください。');
+            return;
+        }
+
+        const messageTone = document.querySelector('input[name="messageTone"]:checked');
+
         const totals = calculateTotal();
 
         const payload = {
             userName: document.getElementById('userName').value,
             userEmail: document.getElementById('userEmail').value,
-            userMessage: document.getElementById('userMessage').value,
+            portfolioOption: portfolioOption.value,
+            messageTone: messageTone ? messageTone.value : "標準（ビジネス向け）",
+            decisiveIllustration: document.getElementById('decisiveIllustration').value,
+            userTemplate: document.getElementById('userTemplate').value,
             selectedType: totals.selectedTypeLabel,
             selectedOptions: totals.selectedOptionsLabel,
             subtotal: totals.subtotalStr,
@@ -767,7 +966,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.additional-option-item').forEach(opt => opt.checked = false);
         document.querySelectorAll('input[name="type"]').forEach(r => r.checked = false);
         document.querySelectorAll('input[name="payment"]').forEach(r => r.checked = false);
+        document.querySelectorAll('input[name="portfolioOption"]').forEach(r => r.checked = false);
+        document.querySelectorAll('input[name="messageTone"]').forEach(r => r.checked = false);
         
+        document.getElementById('userTemplate').value = defaultTemplateText;
+
         updatePreviews();
         calculateTotal();
 
@@ -798,6 +1001,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
-
 
 
