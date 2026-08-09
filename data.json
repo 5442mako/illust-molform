@@ -1,1 +1,213 @@
-
+{
+  "config": {
+    "top_image_url": "https://raw.githubusercontent.com/5442mako/image-host-/main/575758226550424048.webp",
+    "commercial_rate": 1.5,
+    "theme_color": "#e87a90",
+    "note_type": "",
+    "note_option": "※オプションについての注意事項です。\n　・複雑な衣装は要相談",
+    "note_payment": "※お支払いについての注意事項です。\n　・各サービスのアカウントが必要になります。",
+    "note_color": "#d9534f"
+  },
+  "menus": [
+    {
+      "category": "描写範囲",
+      "label": "顔のみ",
+      "price": 10000,
+      "imgs": "https://raw.githubusercontent.com/5442mako/image-host-/main/image196.webp",
+      "type": "radio",
+      "badge": ""
+    },
+    {
+      "category": "描写範囲",
+      "label": "バストアップ",
+      "price": 18000,
+      "imgs": "https://raw.githubusercontent.com/5442mako/image-host-/main/577347099318813231.webp",
+      "type": "radio",
+      "badge": ""
+    },
+    {
+      "category": "描写範囲",
+      "label": "膝上",
+      "price": 25000,
+      "imgs": "https://raw.githubusercontent.com/5442mako/image-host-/main/577346994159223237.webp",
+      "type": "radio",
+      "badge": ""
+    },
+    {
+      "category": "描写範囲",
+      "label": "全身",
+      "price": 35000,
+      "imgs": "https://raw.githubusercontent.com/5442mako/image-host-/main/イラスト210.webp",
+      "type": "radio",
+      "badge": "★人気"
+    },
+    {
+      "category": "描写範囲",
+      "label": "ちびキャラ",
+      "price": 8000,
+      "imgs": "",
+      "type": "radio",
+      "badge": "おすすめ"
+    },
+    {
+      "category": "描写範囲",
+      "label": "【フルパッケージ】ドレス豪華一枚絵",
+      "price": 90000,
+      "imgs": "",
+      "type": "radio",
+      "badge": ""
+    },
+    {
+      "category": "オプション",
+      "label": "商用利用",
+      "price": 1.5,
+      "imgs": "",
+      "type": "commercial",
+      "badge": "要確認"
+    },
+    {
+      "category": "オプション",
+      "label": "背景透過（枚数によって金額が変わります）",
+      "price": "要相談",
+      "imgs": "",
+      "type": "checkbox",
+      "badge": "要確認"
+    },
+    {
+      "category": "オプション",
+      "label": "口差分",
+      "price": 1000,
+      "imgs": "",
+      "type": "checkbox",
+      "badge": ""
+    },
+    {
+      "category": "オプション",
+      "label": "目の差分",
+      "price": 5000,
+      "imgs": "",
+      "type": "checkbox",
+      "badge": ""
+    },
+    {
+      "category": "オプション",
+      "label": "ポーズ差分",
+      "price": 20000,
+      "imgs": "",
+      "type": "checkbox",
+      "badge": ""
+    },
+    {
+      "category": "オプション",
+      "label": "華美ドレス",
+      "price": 25000,
+      "imgs": "",
+      "type": "checkbox",
+      "badge": ""
+    },
+    {
+      "category": "オプション",
+      "label": "高密度背景",
+      "price": 25000,
+      "imgs": "",
+      "type": "checkbox",
+      "badge": ""
+    },
+    {
+      "category": "オプション",
+      "label": "風景、街並みなどの背景",
+      "price": 50000,
+      "imgs": "",
+      "type": "checkbox",
+      "badge": ""
+    },
+    {
+      "category": "オプション",
+      "label": "簡易背景",
+      "price": 8000,
+      "imgs": "",
+      "type": "checkbox",
+      "badge": ""
+    },
+    {
+      "category": "オプション",
+      "label": "小物(描き込み少)",
+      "price": 5000,
+      "imgs": "",
+      "type": "checkbox",
+      "badge": ""
+    },
+    {
+      "category": "オプション",
+      "label": "小物(描き込み多)",
+      "price": 10000,
+      "imgs": "",
+      "type": "checkbox",
+      "badge": ""
+    },
+    {
+      "category": "オプション",
+      "label": "衣装デザイン",
+      "price": 20000,
+      "imgs": "",
+      "type": "checkbox",
+      "badge": ""
+    },
+    {
+      "category": "オプション",
+      "label": "パーツ分け、動くイラスト",
+      "price": 50000,
+      "imgs": "",
+      "type": "checkbox",
+      "badge": ""
+    },
+    {
+      "category": "オプション",
+      "label": "単色、パターン背景",
+      "price": 0,
+      "imgs": "",
+      "type": "checkbox",
+      "badge": ""
+    },
+    {
+      "category": "オプション",
+      "label": "追加オプションなし",
+      "price": 0,
+      "imgs": "",
+      "type": "checkbox",
+      "badge": ""
+    },
+    {
+      "category": "決済方法",
+      "label": "Wickチケット",
+      "price": 0,
+      "imgs": "",
+      "type": "payment",
+      "badge": ""
+    },
+    {
+      "category": "決済方法",
+      "label": "アズカリ",
+      "price": 0.055,
+      "imgs": "",
+      "type": "payment",
+      "badge": ""
+    },
+    {
+      "category": "決済方法",
+      "label": "つなぐ",
+      "price": 0.055,
+      "imgs": "",
+      "type": "payment",
+      "badge": ""
+    },
+    {
+      "category": "決済方法",
+      "label": "SKIMA",
+      "price": 0.22,
+      "imgs": "",
+      "type": "payment",
+      "badge": ""
+    }
+  ]
+}
