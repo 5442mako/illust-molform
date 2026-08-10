@@ -183,7 +183,7 @@
       "price": 0,
       "imgs": "",
       "type": "payment",
-      "badge": "人気"
+      "badge": "おすすめ"
     },
     {
       "category": "決済方法",
@@ -191,7 +191,7 @@
       "price": 0.055,
       "imgs": "",
       "type": "payment",
-      "badge": "おすすめ"
+      "badge": ""
     },
     {
       "category": "決済方法",
