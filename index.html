@@ -538,6 +538,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const DATA_JSON_URL = "https://raw.githubusercontent.com/5442mako/illust-molform/main/data.json";
     const GAS_SUBMIT_URL = "https://script.google.com/macros/s/AKfycbzlfabikHOMTndxu1yHURGIEm9MnwYy0XNFxMS6Wv6kh96LEp8zTRti25bY3gynSprF/exec";
 
+    // 商用利用の倍率を保持する変数（基本設定が空欄ならデフォルト1.5倍）
+    let commercialRateConfig = 1.5;
+
     const defaultTemplateText = `【納期】：
 【納期の前倒しの可否】：
 【使用用途】：
@@ -598,6 +601,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 if (data.config.theme_color) applyThemeColor(data.config.theme_color);
 
+                // 基本設定から商用利用倍率を取得（指定が無ければ1.5倍）
+                if (data.config.commercial_rate) {
+                    const parsedRate = parseFloat(data.config.commercial_rate);
+                    if (!isNaN(parsedRate) && parsedRate > 0) {
+                        commercialRateConfig = parsedRate;
+                    }
+                }
+
                 const noteColor = data.config.note_color || '';
                 setupNote('noteType', data.config.note_type, noteColor);
                 setupNote('noteOption', data.config.note_option, noteColor);
@@ -641,7 +652,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (item.price === "" || item.price === null || isNaN(numPrice)) {
                 priceText = item.price ? `(${item.price})` : `(要相談)`;
             } else if (item.type === 'commercial') {
-                // 自動の(+50%)表示をオフ（スプレッドシート/data.jsonのラベルに「制作費の50%追加」等を記載する場合）
                 priceText = ""; 
             } else if (numPrice === 0) {
                 priceText = `(無料)`;
@@ -757,10 +767,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             selectedOptionsText.push(opt.dataset.label);
 
-            if (!isNaN(val)) {
-                if (optType === 'commercial') {
-                    commercialMultiplier *= val;
-                } else {
+            if (optType === 'commercial') {
+                // 基本設定（commercialRateConfig）の倍率を適用する
+                commercialMultiplier *= commercialRateConfig;
+            } else {
+                if (!isNaN(val)) {
                     baseTotal += val;
                 }
             }
