@@ -640,10 +640,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (item.price === "" || item.price === null || isNaN(numPrice)) {
                 priceText = item.price ? `(${item.price})` : `(要相談)`;
-            } else if (item.type === 'commercial') {
+            //} else if (item.type === 'commercial') {
                 // 1.5倍の場合 -> (numPrice - 1) * 100 = 50%
-                const percent = Math.round((numPrice - 1) * 100);
-                priceText = `(+${percent}%)`;
+                //const percent = Math.round((numPrice - 1) * 100);
+                //priceText = `(+${percent}%)`;
+            } else if (item.type === 'commercial') {
+            // データ側のラベルに「（制作費の50%追加）」などを含め、自動の(+50%)付与をなくす場合
+                priceText = ""; 
+            }
             } else if (numPrice === 0) {
                 priceText = `(無料)`;
             } else {
