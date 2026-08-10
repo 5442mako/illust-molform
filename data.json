@@ -59,16 +59,16 @@
     },
     {
       "category": "オプション",
-      "label": "商用利用（合計金額の50％）",
-      "price": 1.5,
+      "label": "商用利用",
+      "price": "制作費の50%追加",
       "imgs": "",
       "type": "commercial",
       "badge": "要確認"
     },
     {
       "category": "オプション",
-      "label": "背景透過（枚数によって金額が変わります）",
-      "price": "要相談",
+      "label": "背景透過",
+      "price": "枚数によって金額が変わります。",
       "imgs": "",
       "type": "checkbox",
       "badge": "要確認"
