@@ -39,7 +39,7 @@
       "price": 35000,
       "imgs": "https://raw.githubusercontent.com/5442mako/image-host-/main/イラスト210.webp",
       "type": "radio",
-      "badge": "★人気"
+      "badge": ""
     },
     {
       "category": "描写範囲",
@@ -47,7 +47,7 @@
       "price": 8000,
       "imgs": "",
       "type": "radio",
-      "badge": "おすすめ"
+      "badge": ""
     },
     {
       "category": "描写範囲",
@@ -183,7 +183,7 @@
       "price": 0,
       "imgs": "",
       "type": "payment",
-      "badge": ""
+      "badge": "おすすめ"
     },
     {
       "category": "決済方法",
