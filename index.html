@@ -538,7 +538,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const DATA_JSON_URL = "https://raw.githubusercontent.com/5442mako/illust-molform/main/data.json";
     const GAS_SUBMIT_URL = "https://script.google.com/macros/s/AKfycbzlfabikHOMTndxu1yHURGIEm9MnwYy0XNFxMS6Wv6kh96LEp8zTRti25bY3gynSprF/exec";
 
-    // 商用利用の倍率を保持する変数（基本設定が空欄ならデフォルト1.5倍）
+    // 商用利用の倍率を保持する変数（デフォルト1.5）
     let commercialRateConfig = 1.5;
 
     const defaultTemplateText = `【納期】：
@@ -601,8 +601,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 if (data.config.theme_color) applyThemeColor(data.config.theme_color);
 
-                // 基本設定から商用利用倍率を取得（指定が無ければ1.5倍）
-                if (data.config.commercial_rate) {
+                // 基本設定から商用利用倍率を判定（数値・文字列どちらにも対応）
+                if (data.config.commercial_rate !== undefined && data.config.commercial_rate !== null && data.config.commercial_rate !== "") {
                     const parsedRate = parseFloat(data.config.commercial_rate);
                     if (!isNaN(parsedRate) && parsedRate > 0) {
                         commercialRateConfig = parsedRate;
@@ -768,7 +768,7 @@ document.addEventListener('DOMContentLoaded', () => {
             selectedOptionsText.push(opt.dataset.label);
 
             if (optType === 'commercial') {
-                // 基本設定（commercialRateConfig）の倍率を適用する
+                // 基本設定から取得した commercialRateConfig（1.2倍等）を乗算する
                 commercialMultiplier *= commercialRateConfig;
             } else {
                 if (!isNaN(val)) {
